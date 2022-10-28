@@ -134,11 +134,12 @@ def look_for_key(main_box):
 ```python
 def look_for_key(bох): 	
     for item in Ьох: 	
-        if item.is_a_box(): 	
-            look_for_key(item)	#РЕКУРСИЯ!!!
-        elif item.is_a_key(): 	
+        if item == box: 	
+            look_for_key(item)	#РЕКУРСИЯ MOMENT!!!
+        elif item == key(): 	
             print "found the key!"
 ```
 
+**Стек вызовов**
 
 
