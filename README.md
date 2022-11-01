@@ -283,3 +283,12 @@ _И та и другая сортирвки имеют время O(n\*log(n))_
 
 [Упражнения Главы 6](https://github.com/EnnerDA/Grokking-Algorithms.My_Conspect/blob/main/%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_6%20%D0%A3%D0%BF%D1%80%D0%B0%D0%B6%D0%BD%D0%B5%D0%BD%D0%B8%D1%8F.md)
 
+Самый простой граф на Python
+```python
+graph = {}
+graph["you"] = ["alice", "ЬоЬ", "claire"]
+```
+![graph](https://user-images.githubusercontent.com/116806816/199277063-f1023382-1ed0-40c9-9fc5-bf8151ac7abb.png)
+Графы бывают направленные и ненаправленные.
+
+
