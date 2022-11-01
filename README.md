@@ -289,6 +289,7 @@ graph = {}
 graph["you"] = ["alice", "ЬоЬ", "claire"]
 ```
 ![graph](https://user-images.githubusercontent.com/116806816/199277063-f1023382-1ed0-40c9-9fc5-bf8151ac7abb.png)
+
 Графы бывают направленные и ненаправленные.
 
 
