@@ -288,8 +288,60 @@ _И та и другая сортирвки имеют время O(n\*log(n))_
 graph = {}
 graph["you"] = ["alice", "ЬоЬ", "claire"]
 ```
-![graph](https://user-images.githubusercontent.com/116806816/199277063-f1023382-1ed0-40c9-9fc5-bf8151ac7abb.png)
-
 Графы бывают направленные и ненаправленные.
+
+Пример графа и его реализации на Python
+![Graph](https://user-images.githubusercontent.com/116806816/199453525-be3bb4f1-394d-4bc8-9462-c264ead90852.png)
+
+```python
+from collections import deque
+
+def search(name):
+    search_queue = deque() #создание очереди
+    search_queue += graph[name] #добавление первого графа
+    searched = [] # создание списка уже проверенных
+    while search_queue:
+        person = search_queue.popleft()
+        if not person in searched:
+            if person_is_seller(person):
+                print(person.title(), 'is a seller!')
+                return True
+            else:
+                search_queue += graph[person]
+                searched.append(person) #добавление в список проверенных
+        
+        
+def person_is_seller(person):
+    if person in seller_list:
+        return True
+    else:
+        return False
+
+seller_list = ['thom']
+
+graph = {}
+graph['you'] = ["alice", "bob", "claire"]
+graph["bob"] = ["anuj", "peggy"]
+graph["alice"] = ["peggy"]
+graph["claire"] = ["thom", "jonny"]
+graph["anuj"] = []
+graph["peggy"] = []
+graph["thom"] = []
+graph["jonny"] = []
+
+search('you')
+```
+
+### Итоги Главы 6. 
+
+* Поиск в ширину позволяет определить существует ли путь из А в В.
+* Если путь существует, то поиск в ширину находит кратчайщий путь.
+* Очереди относятся к категории FIFO («первым вошел, первым вышел»).
+* Стек относится к категории LIFO («последним пришел, первым вышел»).
+* Список поиска должен быть очередью, иначе найденый путь не будет кратчайщим.
+* Проверенный элемент не должен проверятся заново, иначе поиск стать бесконечным.
+
+## Глава 7. Алгоритмы Дейкстры.
+
 
 
