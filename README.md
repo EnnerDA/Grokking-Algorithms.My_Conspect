@@ -343,5 +343,68 @@ search('you')
 
 ## Глава 7. Алгоритмы Дейкстры.
 
+Алгоритм Дейкстры:
+1. Найти узел с наименьшей стоимостью (то есть узел, до которого можно добраться за минимальное время).
+2. Обновить стоимости соседей этого узла.
+3. Повторять, пока это не будет сделано для всех узлов графа.
+4. Вычислить итоговый путь.
+
+Для визуализации алгоритма Дейкстры используем таблицу
+
+![изображение](https://user-images.githubusercontent.com/116806816/199473578-b147dd79-5bcb-49c2-bbee-7f87fbe11d0d.png)
+
+
+Использование алгоритма Дейкстры графом, с содержащим ребра с отрицательным весом, невозможно. Если вы хотите найти кратчайший путь в графе, содержащем ребра с отрицательным весом, для этого существует специальный алгоритм, называемый алгоритмом Беллмана- Форда.
+
+Реализация алгоритма Дейкстры на Python
+
+![изображение](https://user-images.githubusercontent.com/116806816/199480491-9a140126-183e-47e6-8aa5-01ce4771ba9f.png)
+```python
+#создаём хэш-таблицу графа
+graph = {}
+graph['start'] = {}
+graph['start']['a'] = 6
+graph['start']['b'] = 2
+
+print(graph['start'].keys()) #Выведет всех соседей узла "start"
+print(graph['start']['a']) #Выведет вес ребра "start - a"
+
+graph['a'] = {}
+graph['a']['end'] = 1
+graph['b'] = {}
+graph['b']['a'] = 3
+graph['b']['end'] = 5
+graph['end'] = {}
+
+# создаём хэш-таблицу стоимостей узла
+infinity = float('inf') #бесконечность
+costs = {}
+costs['a'] = 6
+costs['b'] = 2
+costs['end'] = infinity
+
+# создаём хэш-таблицу родителей
+parents = {}
+parents['a'] = 'start'
+parents['b'] = 'start'
+parents['end'] = None
+
+#Создаём список для учета отработаных узлов
+processed = []
+
+# GO GO GO !
+
+node = find_lowest_cost_node(costs)
+while node is not None:
+    cost = costs[node]
+    neighbors = graph[node]
+    for n in neighbors.keys():
+        new_cost = cost + neighbors[n]
+        if costs[n] > new_cost:
+            costs[n] = new_cost
+            parents[n] = node
+    processed.append(node)
+    node = find_lowest_cost_node(costs)
+```
 
 
