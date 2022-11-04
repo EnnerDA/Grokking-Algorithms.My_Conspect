@@ -3,10 +3,6 @@ graph = {}
 graph['start'] = {}
 graph['start']['a'] = 6
 graph['start']['b'] = 2
-graph['start']['c'] = 5
-graph['start']['d'] = 8
-graph['start']['e'] = 10
-graph['start']['f'] = 12
 
 graph['a'] = {}
 graph['a']['end'] = 1
@@ -48,10 +44,11 @@ def find_lowest_cost_node(node):
         
 # GO GO GO !
 node = 'start'
-while node != 'end':
+while node != None:
     node = find_lowest_cost_node(node)
 
-way =node
+#Посмотрим путь в обратном порядке
+way = 'end'
 while way != 'start':
     print(parents[way])
     way = parents[way]
