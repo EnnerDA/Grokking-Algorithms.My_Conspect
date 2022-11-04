@@ -366,9 +366,6 @@ graph['start'] = {}
 graph['start']['a'] = 6
 graph['start']['b'] = 2
 
-print(graph['start'].keys()) #Выведет всех соседей узла "start"
-print(graph['start']['a']) #Выведет вес ребра "start - a"
-
 graph['a'] = {}
 graph['a']['end'] = 1
 graph['b'] = {}
@@ -406,5 +403,6 @@ while node is not None:
     processed.append(node)
     node = find_lowest_cost_node(costs)
 ```
+[моя версия алгоритма Дейкстры](https://github.com/EnnerDA/Grokking-Algorithms.My_Conspect/blob/main/%D0%90%D0%BB%D0%B3%D0%BE%D1%80%D0%B8%D1%82%D0%BC%20%D0%94%D0%B5%D0%B9%D0%BA%D1%81%D1%82%D1%80%D1%8B.py)
 
 
