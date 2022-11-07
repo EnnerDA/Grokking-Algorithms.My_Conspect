@@ -28,27 +28,16 @@ parents['end'] = None
 #Создаём список для учета отработаных узлов 
 processed = []
 
-def find_lowest_cost_node(node):
-    if graph[node] == {}:
-        return None
-    else:
-        lowest_cost = infinity
-        for neighbour in graph[node]: 
-            if graph[node][neighbour] < lowest_cost and neighbour not in processed:
-                lowest_cost = graph[node][neighbour]
-                n = neighbour
-            if costs[n] > graph[node][n] + costs[node]:
-                costs[n] = graph[node][n] + costs[node]
-                parents[n] = node
-        return n        
-        
-# GO GO GO !
-node = 'start'
-while node != None:
-    node = find_lowest_cost_node(node)
+def calculate_graph(graph):
+    for node in graph.keys():   #начинаем перебирать все узлы
+        if node in processed:  #если узел проверен, то ничего
+            None        
+        else:   #а если не проверен, то
+            for neighbour in graph[node]:   #начнем перебирать соседей этого узла
+                if costs[neighbour] > costs[node] + graph[node][neighbour]: #оцениваем стоимость соседа
+                    costs[neighbour] = costs[node] + graph[node][neighbour]
+                    parents[neighbour] = node
+        processed.append(node) 
 
-#Посмотрим путь в обратном порядке
-way = 'end'
-while way != 'start':
-    print(parents[way])
-    way = parents[way]
+# GO! Go! go!
+calculate_graph(graph)
