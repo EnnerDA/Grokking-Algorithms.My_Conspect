@@ -1,34 +1,21 @@
-# создаём хэш-таблицу графа
+#создаём хэш-таблицу графа
 graph = {}
 graph['start'] = {}
-graph['start']['a'] = 5
+graph['start']['a'] = 6
 graph['start']['b'] = 2
 
 graph['a'] = {}
-graph['a']['c'] = 4
-graph['a']['d'] = 2
-
+graph['a']['end'] = 1
 graph['b'] = {}
-graph['b']['a'] = 8
-graph['b']['d'] = 7
-
-graph['c'] = {}
-graph['c']['d'] = 6
-graph['c']['end'] = 3
-
-graph['d'] = {}
-graph['d']['end'] = 1
-
+graph['b']['a'] = 3
+graph['b']['end'] = 5
 graph['end'] = {}
 
 # создаём хэш-таблицу стоимостей узла
 infinity = float('inf') #бесконечность
 costs = {}
-costs['start'] = 0
-costs['a'] = 5
+costs['a'] = 6
 costs['b'] = 2
-costs['c'] = infinity
-costs['d'] = infinity
 costs['end'] = infinity
 
 # создаём хэш-таблицу родителей
@@ -36,8 +23,6 @@ parents = {}
 parents['start'] = None
 parents['a'] = 'start'
 parents['b'] = 'start'
-parents['c'] = None
-parents['d'] = None
 parents['end'] = None
 
 # cоздаём список для учета отработаных узлов 
