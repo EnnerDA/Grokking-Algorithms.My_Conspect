@@ -441,9 +441,8 @@ states_needed = set(states_needed)
 ```
 Ну и найдём жадным алгоритмом станции которые покрывают вообще всё
 ```python
-best_station = None 			
- 			
-while states_needed != set():
+while len(states_needed) != 0:
+    best_station = None 			
     states_covered = set()
     for station, states_for_station in stations.items():
         covered = states_needed & states_for_station
@@ -453,10 +452,13 @@ while states_needed != set():
             use_stantion.append(best_station)
     states_needed = states_needed - states_covered
 print(use_stantion)
-
 ```
 Результат
 ```
 ['kone', 'ktwo', 'kthree', 'kfive']
 ```
-что собственно совыпадает с книгой.
+что собственно совпадает с книгой.
+
+[Упражнения главы 8](https://github.com/EnnerDA/Grokking-Algorithms.My_Conspect/blob/main/%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_8%20%D0%A3%D0%BF%D1%80%D0%B0%D0%B6%D0%BD%D0%B5%D0%BD%D0%B8%D1%8F.md)
+
+**NP-полные задачи**
