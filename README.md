@@ -405,4 +405,58 @@ while node is not None:
 ```
 [моя версия алгоритма Дейкстры](https://github.com/EnnerDA/Grokking-Algorithms.My_Conspect/blob/main/%D0%90%D0%BB%D0%B3%D0%BE%D1%80%D0%B8%D1%82%D0%BC%20%D0%94%D0%B5%D0%B9%D0%BA%D1%81%D1%82%D1%80%D1%8B.py)
 
+[Упражнения Главы 7](https://github.com/EnnerDA/Grokking-Algorithms.My_Conspect/blob/main/%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_7%20%D0%A3%D0%BF%D1%80%D0%B0%D0%B6%D0%BD%D0%B5%D0%BD%D0%B8%D1%8F.md)
 
+### Итоги Главы 7:
+
+ * Поиск в ширину вычисляет кратчайщий путь в невзвешенном графе.
+ * Алгоритм Дейкстры высчисляет кратчайщий путь во взвешенном графе.
+ * Алгоритм Дейкстры работает только с положительными значениями веса. _Если вернешься к этому пункту проверь еще разик это утверждение_
+ * При наличии отрицательных весов используйте алгоритм Беллмана-Форда.
+ ---
+ 
+ ## Глава 8. Жадные алгоритмы.
+ 
+ Жадный алгоритм - на каждом шаге выбирать вариант с наилучшее значение без оглядки на дальнейщие шаги.
+ 
+ [Упражнения главы 8](https://github.com/EnnerDA/Grokking-Algorithms.My_Conspect/blob/main/%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_8%20%D0%A3%D0%BF%D1%80%D0%B0%D0%B6%D0%BD%D0%B5%D0%BD%D0%B8%D1%8F.md)
+ 
+Уж не знаю почему, но код в этой книге крайне труден для усвоения посему в задачи на покрытие штатов радиостанциями действовать будем сами. 
+
+ДАНО:
+``` pytnoh
+stations = {} 	
+stations["kone"] = set(["id", "nv", "ut"]) 	
+stations["ktwo"] = set(["wa", "id", "mt"]) 	
+stations["kthree"] = set(["or", "nv", "са"]) 	
+stations["kfour"] = set(["nv", "ut"]) 	
+stations["kfive"] = set(["ca", "az"])	
+```
+Создадим перечень нужных штатов:
+```python
+for states in stations.values():
+    for stat in states:
+        states_needed.append(stat)
+states_needed = set(states_needed)
+```
+Ну и найдём жадным алгоритмом станции которые покрывают вообще всё
+```python
+best_station = None 			
+ 			
+while states_needed != set():
+    states_covered = set()
+    for station, states_for_station in stations.items():
+        covered = states_needed & states_for_station
+        if len(states_covered) < len(covered):
+            states_covered = covered
+            best_station = station
+            use_stantion.append(best_station)
+    states_needed = states_needed - states_covered
+print(use_stantion)
+
+```
+Результат
+```
+['kone', 'ktwo', 'kthree', 'kfive']
+```
+что собственно совыпадает с книгой.
