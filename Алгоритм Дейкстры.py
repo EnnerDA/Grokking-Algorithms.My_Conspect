@@ -1,3 +1,5 @@
+import copy
+
 #создаём хэш-таблицу графа
 graph = {}
 graph['start'] = {}
@@ -46,48 +48,26 @@ def sort_dir(u_d):
                         None
     return sort_list    
     
-def calculate_graph(node):
-    # функция решает весь граф перезаписывая словари "parents" и "costs"
-    for neighbor in sort_dir(graph[node]):
-        for n in sort_dir(graph[neighbor]):
-            if costs[n] > costs[neighbor] + graph[neighbor][n]:
-                costs[n] = costs[neighbor] + graph[neighbor][n]
-                parents[n] = neighbor
+def calculate_graph(nobe):
+    # функция просчитывает граф обновляя словари parents и costs для всех узлов
+    nobe_list = sort_dir(graph[nobe])
+    new_nobe_list = copy.copy(nobe_list)
+    new_nobe_dir = {}
+
+    while nobe_list != []:
+        for neighbor in graph[nobe_list[0]].keys(): # nobe_list[0] - рассматриваемый нами узел
+            if costs[neighbor] > costs[nobe_list[0]] + graph[nobe_list[0]][neighbor]:
+                costs[neighbor] = costs[nobe_list[0]] + graph[nobe_list[0]][neighbor]
+                parents[neighbor] = nobe_list[0]
             else:
                 None
-        for next_node in sort_dir(graph[node]):
-            if next_node in processed:
-                None
-            else:
-                calculate_graph(next_node) #рекурсия
-                processed.append(next_node)
-        
-def graph_way(node):
-    # функция для составления маршрута в решенном графе
-    way_lisrt =''
-    if parents[node] == None:
-        print('  This function work correctly only on calculate graph!')
-        print('  Please start calculate_graph(graph) function first.')
-    else:
-        way_list = node
-        n = node
-        while n:
-            n = parents[n]
-            if n == None:
-                break
-            way_list = n + ' --> ' + way_list
-        print(f'Our way: \n\t{way_list} \nand it is costs {costs[node]} units')
-        def calculate_graph():
-            # функция просчитывает весь граф
-            for node in graph.keys():   # начинаем перебирать все узлы
-                if node in processed:  # если узел проверен, то ничего
-                    None        
-                else:   # а если не проверен, то
-                    for neighbour in graph[node]:   # начнем перебирать соседей этого узла
-                        if costs[neighbour] > costs[node] + graph[node][neighbour]: # оцениваем стоимость соседа
-                            costs[neighbour] = costs[node] + graph[node][neighbour]
-                            parents[neighbour] = node
-        processed.append(node) 
+            if neighbor not in new_nobe_list and neighbor not in processed:
+                new_nobe_list.append(neighbor)
+                new_nobe_dir[neighbor] = costs[neighbor]
+
+        processed.append(nobe_list.pop(0))
+        nobe_list += sort_dir(new_nobe_dir)
+        new_nobe_dir = {}
 
 def graph_way(node):
     # функция для составления маршрута в решенном графе
@@ -105,6 +85,8 @@ def graph_way(node):
             way_list = n + ' --> ' + way_list
         print(f'Our way: \n\t{way_list} \nand it is costs {costs[node]} units')
 
-#GO! Go! go!
+
+# GO! Go! go!
 calculate_graph('start')
 graph_way('end')
+
