@@ -496,8 +496,8 @@ print(use_stantion)
 А вот код для проверки слов: 
 
 ```python
-word_a = 'fish'
-word_b = 'vista'
+word_a = 'clues'
+word_b = 'blue'
 x = []
 cell = []
 max_cell = 0
@@ -507,16 +507,22 @@ for j in range(len(word_b)):
 
 for i in range(len(word_a)):
     cell.append(j_string)
-
-for i in range(0, len(word_a)-1):
-    for j in range(0, len(word_b)-1):
+print(cell)
+for i in range(0, len(word_a)):
+    print(f'смотрим i = {i}')
+    for j in range(0, len(word_b)):
         if word_a[i] == word_b[j]:
+            print(f'       i = {i}, j = {j} YES!!!!!!!!!!!!!')
+            print(f'       word_a[i] = {word_a[i]}, word_b[j] = {word_b[j]}')
             max_cell += 1
             cell[i][j] = max_cell
+            print(cell)
         else:
-            print(f'i = {i}, j = {j}')
-            print(f' word_a[i] = {word_a[i]}, word_b[j] = {word_b[j]}')
+            print(f'       i = {i}, j = {j}')
+            print(f'       word_a[i] = {word_a[i]}, word_b[j] = {word_b[j]}')
             cell[i][j] = max_cell
+        print('   max_cell =', max_cell)
+print(max_cell)
 ```
 ### Итоги Главы 9
 
