@@ -491,8 +491,33 @@ print(use_stantion)
 
 В результате правый нижний угол дал нам полный ответ, все отсальные ячейки таблицы - процесс динамического програмирования.
 
-[Упражнения Главы 9](https://github.com/EnnerDA/Grokking-Algorithms.My_Conspect/edit/main/%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_9%20%D0%A3%D0%BF%D1%80%D0%B0%D0%B6%D0%BD%D0%B5%D0%BD%D0%B8%D1%8F.md)
+[Упражнения Главы 9](https://github.com/EnnerDA/Grokking-Algorithms.My_Conspect/blob/main/%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_9%20%D0%A3%D0%BF%D1%80%D0%B0%D0%B6%D0%BD%D0%B5%D0%BD%D0%B8%D1%8F.md)
 
+А вот код для проверки слов: 
+
+```python
+word_a = 'fish'
+word_b = 'vista'
+x = []
+cell = []
+max_cell = 0
+j_string = []
+for j in range(len(word_b)):
+    j_string.append(0)
+
+for i in range(len(word_a)):
+    cell.append(j_string)
+
+for i in range(0, len(word_a)-1):
+    for j in range(0, len(word_b)-1):
+        if word_a[i] == word_b[j]:
+            max_cell += 1
+            cell[i][j] = max_cell
+        else:
+            print(f'i = {i}, j = {j}')
+            print(f' word_a[i] = {word_a[i]}, word_b[j] = {word_b[j]}')
+            cell[i][j] = max_cell
+```
 ### Итоги Главы 9
 
 * Динамическое программирование применяется при оптимизации некоторой характеристики.
@@ -504,6 +529,7 @@ print(use_stantion)
 ---
 ## Глава 10 Алгоритм k ближайших соседей.
 
+```
 
 
 
